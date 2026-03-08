@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  orderId      Int      @id @default(autoincrement())
+  value        Decimal  @db.Decimal(10, 2)
+  creationDate DateTime @default(now())
+  items        Item[]
+
+  @@map("orders")
+}
+
+model Item {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2)
+
+  order Order @relation(fields: [orderId], references: [orderId], onDelete: Cascade)
+
+  @@map("items")
+}
