@@ -1,25 +1,39 @@
-export interface CreateOrderDto {
-	value: string
+// Input DTO — campos recebidos pela API (pt-BR)
+export type CreateOrderInput = {
+	numeroPedido: string
+	valorTotal: number
+	dataCriacao: string
+	items: CreateItemInput[]
+}
+
+export type UpdateOrderInput = {
+	valorTotal?: number
+	dataCriacao?: string
+	items?: CreateItemInput[]
+}
+
+export type CreateItemInput = {
+	idItem: string
+	quantidadeItem: number
+	valorItem: number
+}
+
+// Domain DTO — campos mapeados para o banco (en)
+export type CreateOrderDto = {
+	orderId: string
+	value: number
+	creationDate: string
 	items: CreateItemDto[]
 }
 
-export interface OrderDto {
-	orderId: number
-	value: string
-	creationDate: Date
-	items: ItemDto[]
+export type UpdateOrderDto = {
+	value?: number
+	creationDate?: string
+	items?: CreateItemDto[]
 }
 
-export interface CreateItemDto {
+export type CreateItemDto = {
 	productId: number
 	quantity: number
-	price: string
-}
-
-export interface ItemDto {
-	id: number
-	orderId: number
-	productId: number
-	quantity: number
-	price: string
+	price: number
 }

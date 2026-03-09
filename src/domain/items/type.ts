@@ -1,13 +1,13 @@
-export interface CreateItemDto {
-  productId: number;
-  quantity: number;
-  price: string;
+export type CreateItemDto = {
+	productId: number
+	quantity: number
+	price: number
 }
 
 export type Item = {
-  id: number;
-  orderId: number;
-  productId: number;
-  quantity: number;
-  price: string;
-};
+	id: number
+	orderId: string
+	productId: number
+	quantity: number
+	price: string
+}

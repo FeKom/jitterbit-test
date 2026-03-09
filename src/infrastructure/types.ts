@@ -4,7 +4,7 @@ export type Server = FastifyInstance
 export type ServerRequest = FastifyRequest
 export type ServerResponse = FastifyReply
 
-export interface JwtPayload {
+export type JwtPayload = {
 	id: number
 	email: string
 }
