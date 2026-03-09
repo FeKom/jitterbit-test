@@ -3,6 +3,7 @@ import jwtPlugin from './infrastructure/auth/jwt.js'
 import itemRoutes from './infrastructure/routes/itemRoutes.js'
 import orderRoutes from './infrastructure/routes/orderRoutes.js'
 import userRoutes from './infrastructure/routes/userRoutes.js'
+import swaggerPlugin from './infrastructure/swagger/swagger.js'
 
 const server = fastify({
 	logger: true,
@@ -14,6 +15,7 @@ const server = fastify({
 	keepAliveTimeout: 10000,
 })
 
+server.register(swaggerPlugin)
 server.register(jwtPlugin)
 server.register(userRoutes)
 server.register(orderRoutes)
