@@ -1,5 +1,6 @@
 import { fastify } from 'fastify'
 import jwtPlugin from './infrastructure/auth/jwt.js'
+import itemRoutes from './infrastructure/routes/itemRoutes.js'
 import orderRoutes from './infrastructure/routes/orderRoutes.js'
 import userRoutes from './infrastructure/routes/userRoutes.js'
 
@@ -16,6 +17,7 @@ const server = fastify({
 server.register(jwtPlugin)
 server.register(userRoutes)
 server.register(orderRoutes)
+server.register(itemRoutes)
 
 const port = Number(process.env.PORT) || 3000
 
