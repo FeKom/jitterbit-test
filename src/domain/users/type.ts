@@ -1,15 +1,15 @@
-export interface CreateUserDto {
+export type CreateUserDto = {
 	email: string
 	password: string
 	name?: string
 }
 
-export interface LoginDto {
+export type LoginDto = {
 	email: string
 	password: string
 }
 
-export interface AuthResponse {
+export type AuthResponse = {
 	token: string
 	user: {
 		id: number

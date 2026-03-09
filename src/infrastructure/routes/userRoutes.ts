@@ -1,9 +1,8 @@
-import type { FastifyInstance } from 'fastify'
-import '../types.js'
 import * as userService from '../../domain/users/service/userService.js'
 import type { CreateUserDto, LoginDto } from '../../domain/users/type.js'
+import type { Server } from '../types.js'
 
-export default async function userRoutes(server: FastifyInstance) {
+export default async function userRoutes(server: Server) {
 	server.post<{ Body: CreateUserDto }>('/user/register', async (request, reply) => {
 		const user = await userService.register(request.body)
 		const token = server.jwt.sign({ id: user.id, email: user.email })

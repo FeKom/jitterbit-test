@@ -1,10 +1,10 @@
 import fastifyJwt from '@fastify/jwt'
-import type { FastifyInstance } from 'fastify'
 import fp from 'fastify-plugin'
+import type { Server } from '../types.js'
 
 const PUBLIC_ROUTES = ['/user/login', '/user/register']
 
-async function jwtPlugin(server: FastifyInstance) {
+async function jwtPlugin(server: Server) {
 	server.register(fastifyJwt, {
 		secret: process.env.JWT_SECRET || 'default-secret',
 		sign: { expiresIn: '7d' },
