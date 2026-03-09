@@ -1,3 +1,4 @@
+import { AppError } from '../../../infrastructure/errors/appError.js'
 import * as orderRepository from '../repository/orderRepository.js'
 import type { CreateOrderDto, UpdateOrderDto } from '../type.js'
 
@@ -5,7 +6,7 @@ export async function createOrder(data: CreateOrderDto) {
 	const existing = await orderRepository.findById(data.orderId)
 
 	if (existing) {
-		throw { statusCode: 409, message: `Order ${data.orderId} already exists` }
+		throw new AppError(409, `Pedido '${data.orderId}' já existe`)
 	}
 
 	return orderRepository.create(data)
@@ -19,7 +20,7 @@ export async function getById(orderId: string) {
 	const order = await orderRepository.findById(orderId)
 
 	if (!order) {
-		throw { statusCode: 404, message: `Order ${orderId} not found` }
+		throw new AppError(404, `Pedido '${orderId}' não encontrado`)
 	}
 
 	return order
