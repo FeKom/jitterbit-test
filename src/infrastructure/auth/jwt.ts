@@ -13,7 +13,7 @@ async function jwtPlugin(server: Server) {
 	server.addHook('onRequest', async (request, reply) => {
 		const routePath = request.routeOptions.url
 
-		if (routePath && PUBLIC_ROUTES.includes(routePath)) {
+		if (routePath && (PUBLIC_ROUTES.includes(routePath) || routePath.startsWith('/docs'))) {
 			return
 		}
 
